@@ -16,53 +16,26 @@ let package = Package(
         .macOS(.v10_15)
     ],
     products: [
-        .library(
-            name: "AppStoreAPIModule",
-            targets: ["AppStoreAPIModule"]
-        ),
+        .library(name: "AppStoreAPIModule", targets: ["AppStoreAPIModule"])
+    ],
+    dependencies: [
+        .package(path: "../CoreModule")
     ],
     targets: [
         .target(
             name: "AppStoreAPIModule",
+            dependencies: [
+                "CoreModule"
+            ],
             path: "Sources/AppStoreAPIModule",
             exclude: [],
             resources: [],
             publicHeadersPath: nil
         ),
-        .testTarget(
-            name: "AppStoreAPIModuleTests",
-            dependencies: ["AppStoreAPIModule"],
-            path: "Tests/AppStoreAPIModuleTests"
-        )
-    ]
-    
-//    products: [
-//        .library(
-//            name: "CoreNetwork",
-//            targets: ["CoreNetwork"]
-//        ),
-//    ],
-//    dependencies: [
-//        .package(
-//            url: "https://github.com/Alamofire/Alamofire.git",
-//            .upToNextMajor(from: "5.10.2")
-//        )
-//    ],
-//    targets: [
-//        .target(
-//            name: "CoreNetwork",
-//            dependencies: [
-//                .product(name: "Alamofire", package: "Alamofire")
-//            ],
-//            path: "Sources/CoreNetwork",
-//            exclude: [],
-//            resources: [],
-//            publicHeadersPath: nil
-//        ),
 //        .testTarget(
-//            name: "CoreNetworkTests",
-//            dependencies: ["CoreNetwork"],
-//            path: "Tests/CoreNetworkTests"
+//            name: "AppStoreAPIModuleTests",
+//            dependencies: ["AppStoreAPIModule"],
+//            path: "Tests/AppStoreAPIModuleTests"
 //        )
-//    ]
+    ]
 )
