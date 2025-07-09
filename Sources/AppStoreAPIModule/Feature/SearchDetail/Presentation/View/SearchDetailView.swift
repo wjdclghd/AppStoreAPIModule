@@ -10,7 +10,12 @@ import SwiftUI
 
 struct SearchDetailView: View {
     @StateObject var viewModel: SearchDetailViewModel
-    @EnvironmentObject private var coordinator: NavigationCoordinator
+    private let onPop: () -> Void
+    
+    init(viewModel: @autoclosure @escaping () -> SearchDetailViewModel, onPop: @escaping () -> Void) {
+        _viewModel = StateObject(wrappedValue: viewModel())
+        self.onPop = onPop
+    }
     
     var body: some View {
         ScrollView {
@@ -60,7 +65,7 @@ struct SearchDetailView: View {
                     }
 
                     Button(action: {
-                        coordinator.pop()
+                        onPop()
                     }) {
                         Text("뒤로 가기")
                             .font(.body)
