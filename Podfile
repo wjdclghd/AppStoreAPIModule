@@ -5,6 +5,8 @@ platform :ios, '16.0'
 target 'AppStoreAPIModule' do
   use_frameworks!
 
+  pod 'CoreModule', :path => '../CoreModule'
+
   target 'AppStoreAPIModuleTests' do
     inherit! :search_paths
 
