@@ -10,10 +10,11 @@ import SwiftUI
 
 struct SearchDetailListView: View {
     @StateObject var viewModel: SearchDetailListViewModel
-    @EnvironmentObject private var coordinator: NavigationCoordinator
+    private let onPush: (SearchDetailEntity) -> Void
     
-    init(viewModel: @autoclosure @escaping () -> SearchDetailListViewModel) {
+    init(viewModel: @autoclosure @escaping () -> SearchDetailListViewModel, onPush: @escaping (SearchDetailEntity) -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel())
+        self.onPush = onPush
     }
     
     var body: some View {
@@ -30,7 +31,7 @@ struct SearchDetailListView: View {
             } else {
                 List(viewModel.searchDetailEntitys, id: \.id) { entity in
                     Button {
-                        coordinator.push(route: .searchDetail(entity: entity))
+                        onPush(entity)
                     } label: {
                         HStack(alignment: .top, spacing: 12) {
                             if let urlString = entity.artworkUrl100,
