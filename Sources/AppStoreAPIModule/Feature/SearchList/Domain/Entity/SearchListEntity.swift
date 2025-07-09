@@ -6,7 +6,6 @@
 //
 
 import Foundation
-//import CoreDatabase
 import CoreModule
 
 struct SearchListEntity: Codable, RealmSwiftDBSearchListEntityProtocol {
