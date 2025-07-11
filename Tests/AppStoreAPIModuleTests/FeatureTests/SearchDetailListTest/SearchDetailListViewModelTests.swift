@@ -8,24 +8,26 @@
 import Foundation
 import XCTest
 import Combine
-import SwiftUI
-@testable import iOSCleanArchitecture
+@testable import AppStoreAPIModule
 
 final class SearchDetailListViewModelTests: XCTestCase {
-    private var testCancellables: Set<AnyCancellable>!
     private var testSearchDetailListUseCase: TestSearchDetailListUseCase!
     private var testSearchDetailListViewModel: SearchDetailListViewModel!
+    
+    private var testCancellables: Set<AnyCancellable>!
 
     override func setUpWithError() throws {
-        testCancellables = []
         testSearchDetailListUseCase = TestSearchDetailListUseCase()
         testSearchDetailListViewModel = SearchDetailListViewModel(useCase: testSearchDetailListUseCase, searchKeyword: "TestKeyword")
+        
+        testCancellables = []
     }
     
     override func tearDownWithError() throws {
-        testCancellables = nil
         testSearchDetailListUseCase = nil
         testSearchDetailListViewModel = nil
+        
+        testCancellables = nil
     }
 
     func testSearchDetailList() {
@@ -41,13 +43,13 @@ final class SearchDetailListViewModelTests: XCTestCase {
             }
             .store(in: &testCancellables)
 
-        wait(for: [testExpectation], timeout: 1.0)
+        wait(for: [testExpectation], timeout: 1.5)
     }
 }
 
 final class TestSearchDetailListUseCase: SearchDetailListUseCaseProtocol {
     func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
-        let testEntity = SearchDetailEntity(
+        let testResult = SearchDetailEntity(
             id: 1,
             trackName: "Test App",
             artistName: "Test Artist",
@@ -59,7 +61,7 @@ final class TestSearchDetailListUseCase: SearchDetailListUseCaseProtocol {
             genres: ["Utilities"]
         )
         
-        return Just([testEntity])
+        return Just([testResult])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

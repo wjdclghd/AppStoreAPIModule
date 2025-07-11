@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-final class SearchDetailListUseCase: SearchDetailListUseCaseProtocol {
+public final class SearchDetailListUseCase: SearchDetailListUseCaseProtocol {
     private let repository: SearchDetailListRepositoryProtocol
 
-    init(repository: SearchDetailListRepositoryProtocol) {
+    public init(repository: SearchDetailListRepositoryProtocol) {
         self.repository = repository
     }
 
-    func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
+    public func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
         repository.searchDetailListRepositoryProtocol(searchKeyword: searchKeyword)
     }
 }

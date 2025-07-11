@@ -8,6 +8,6 @@
 import Foundation
 import Combine
 
-protocol SearchDetailListUseCaseProtocol{
+public protocol SearchDetailListUseCaseProtocol{
     func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error>
 }
