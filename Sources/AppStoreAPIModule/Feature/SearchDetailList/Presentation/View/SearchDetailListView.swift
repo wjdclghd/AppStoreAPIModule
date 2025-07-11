@@ -8,28 +8,28 @@
 import Foundation
 import SwiftUI
 
-struct SearchDetailListView: View {
-    @StateObject var viewModel: SearchDetailListViewModel
+public struct SearchDetailListView: View {
+    @StateObject public var viewModel: SearchDetailListViewModel
     private let onPush: (SearchDetailEntity) -> Void
     
-    init(viewModel: @autoclosure @escaping () -> SearchDetailListViewModel, onPush: @escaping (SearchDetailEntity) -> Void) {
+    public init(viewModel: @autoclosure @escaping () -> SearchDetailListViewModel, onPush: @escaping (SearchDetailEntity) -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.onPush = onPush
     }
     
-    var body: some View {
+    public var body: some View {
         VStack {
             if viewModel.isLoading {
                 ProgressView("검색 중...")
                     .padding()
             }
             
-            if viewModel.searchDetailEntitys.isEmpty && !viewModel.isLoading {
+            if viewModel.searchDetailResults.isEmpty && !viewModel.isLoading {
                 Text("검색 결과가 없습니다.")
                     .foregroundColor(.gray)
                     .padding()
             } else {
-                List(viewModel.searchDetailEntitys, id: \.id) { entity in
+                List(viewModel.searchDetailResults, id: \.id) { entity in
                     Button {
                         onPush(entity)
                     } label: {

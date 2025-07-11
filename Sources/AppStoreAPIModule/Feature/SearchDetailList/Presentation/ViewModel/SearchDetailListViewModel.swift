@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-final class SearchDetailListViewModel: ObservableObject {
-    @Published private(set) var searchDetailEntitys: [SearchDetailEntity] = []
+public final class SearchDetailListViewModel: ObservableObject {
+    @Published private(set) var searchDetailResults: [SearchDetailEntity] = []
     @Published private(set) var isLoading: Bool = false
     @Published var errorMessage: String?
 
@@ -35,7 +35,7 @@ final class SearchDetailListViewModel: ObservableObject {
                     self?.errorMessage = error.localizedDescription
                 }
             }, receiveValue: { [weak self] results in
-                self?.searchDetailEntitys = results
+                self?.searchDetailResults = results
             })
             .store(in: &cancellables)
     }
