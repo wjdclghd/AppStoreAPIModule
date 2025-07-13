@@ -49,7 +49,7 @@ final class SearchDetailListViewModelTests: XCTestCase {
 
 final class TestSearchDetailListUseCase: SearchDetailListUseCaseProtocol {
     func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
-        let testResult = SearchDetailEntity(
+        let testResults = SearchDetailEntity(
             id: 1,
             trackName: "Test App",
             artistName: "Test Artist",
@@ -61,7 +61,7 @@ final class TestSearchDetailListUseCase: SearchDetailListUseCaseProtocol {
             genres: ["Utilities"]
         )
         
-        return Just([testResult])
+        return Just(testResults)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

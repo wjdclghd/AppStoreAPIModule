@@ -8,55 +8,78 @@
 import Foundation
 import XCTest
 import Combine
-@testable import iOSCleanArchitecture
+@testable import AppStoreAPIModule
 
 final class SearchDetailListUseCaseTests: XCTestCase {
-    private var testCancellables: Set<AnyCancellable>!
     private var testSearchDetailListRepository: TestSearchDetailListRepository!
     private var testSearchDetailListUseCase: SearchDetailListUseCase!
+    
+    private var testCancellables: Set<AnyCancellable>!
 
     override func setUpWithError() throws {
-        testCancellables = []
         testSearchDetailListRepository = TestSearchDetailListRepository()
         testSearchDetailListUseCase = SearchDetailListUseCase(repository: testSearchDetailListRepository)
+        
+        testCancellables = []
     }
     
     override func tearDownWithError() throws {
-        testCancellables = nil
         testSearchDetailListRepository = nil
         testSearchDetailListUseCase = nil
+        
+        testCancellables = nil
     }
 
     func testSearchDetailListUseCaseProtocol() {
         let testExpectation = expectation(description: "TestSearchDetailListUseCaseProtocol")
 
-        testSearchDetailListUseCase.searchDetailListUseCaseProtocol(searchKeyword: "TestKeyword")
+        testSearchDetailListUseCase.searchDetailListUseCaseProtocol(searchKeyword: "TestSearchDetilListKeyword")
             .sink(
                 receiveCompletion: { testCompletion in
                     if case .failure(let testError) = testCompletion {
-                        XCTFail("에러 발생: \(testError)")
+                        XCTFail("TestError: \(testError)")
                     }
                 },
                 receiveValue: { testResult in
-                    XCTAssertEqual(testResult.first?.id, 123)
-                    XCTAssertEqual(testResult.first?.trackName, "Test App")
+                    XCTAssertEqual(testResult.first?.id, 1)
+                    XCTAssertEqual(testResult.first?.trackName, "TestSearchDetilListKeyword")
                     
                     testExpectation.fulfill()
             })
             .store(in: &testCancellables)
 
-        wait(for: [testExpectation], timeout: 1.0)
+        wait(for: [testExpectation], timeout: 1.5)
+    }
+    
+    func testSearchDetailListUseCaseProtocolEmpty() {
+        let testExpectation = expectation(description: "TestSearchDetailListUseCaseProtocolEmpty")
+
+        testSearchDetailListUseCase.searchDetailListUseCaseProtocol(searchKeyword: " ")
+            .sink(
+                receiveCompletion: { testCompletion in
+                    if case .failure(let testError) = testCompletion {
+                        XCTFail("TestError: \(testError)")
+                    }
+                },
+                receiveValue: { testResults in
+                    XCTAssertTrue(testResults.isEmpty)
+                
+                    testExpectation.fulfill()
+            })
+            .store(in: &testCancellables)
+
+        wait(for: [testExpectation], timeout: 1.5)
     }
 }
 
 final class TestSearchDetailListRepository: SearchDetailListRepositoryProtocol {
     func searchDetailListRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
         let testEntity = SearchDetailEntity(
-            id: 123,
-            trackName: "Test App",
+            id: 1,
+            trackName: "TestSearchDetilListKeyword",
             artistName: "Test Artist",
             artworkUrl100: nil,
-            description: "This is a Test app",
+            description: nil,
             averageUserRating: nil,
             userRatingCount: nil,
             screenshotUrls: nil,
