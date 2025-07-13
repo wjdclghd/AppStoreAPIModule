@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct SearchDetailView: View {
+public struct SearchDetailView: View {
     @StateObject var viewModel: SearchDetailViewModel
     private let onPop: () -> Void
     
-    init(viewModel: @autoclosure @escaping () -> SearchDetailViewModel, onPop: @escaping () -> Void) {
+    public init(viewModel: @autoclosure @escaping () -> SearchDetailViewModel, onPop: @escaping () -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.onPop = onPop
     }
     
-    var body: some View {
+    public var body: some View {
         ScrollView {
             if let entity = viewModel.searchDetailEntity {
                 VStack(alignment: .leading, spacing: 16) {
