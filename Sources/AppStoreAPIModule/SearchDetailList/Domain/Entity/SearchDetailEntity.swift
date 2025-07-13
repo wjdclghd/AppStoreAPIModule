@@ -7,16 +7,16 @@
 
 import Foundation
 
-struct SearchDetailEntity: Identifiable, Codable, Equatable, Hashable {
-    let id: Int
-    let trackName: String?
-    let artistName: String?
-    let artworkUrl100: String?
-    let description: String?
-    let averageUserRating: Double?
-    let userRatingCount: Int?
-    let screenshotUrls: [String]?
-    let genres: [String]?
+public struct SearchDetailEntity: Identifiable, Codable, Equatable, Hashable {
+    public let id: Int
+    public let trackName: String?
+    public let artistName: String?
+    public let artworkUrl100: String?
+    public let description: String?
+    public let averageUserRating: Double?
+    public let userRatingCount: Int?
+    public let screenshotUrls: [String]?
+    public let genres: [String]?
     
     enum CodingKeys: String, CodingKey {
         case id = "trackId"

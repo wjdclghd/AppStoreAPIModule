@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct SearchDetailListEntity: Codable {
-    let resultCount: Int
-    let results: [SearchDetailEntity]
+public struct SearchDetailListEntity: Codable {
+    public let resultCount: Int
+    public let results: [SearchDetailEntity]
+    
+    public init(resultCount: Int, results: [SearchDetailEntity]) {
+        self.resultCount = resultCount
+        self.results = results
+    }
 }

@@ -23,22 +23,6 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 unit test
 
-### ios ui_test
-
-```sh
-[bundle exec] fastlane ios ui_test
-```
-
-ui test
-
-### ios develop_build
-
-```sh
-[bundle exec] fastlane ios develop_build
-```
-
-Build app code signing
-
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
