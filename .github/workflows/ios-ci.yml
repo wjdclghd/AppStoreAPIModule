@@ -44,35 +44,19 @@ jobs:
       - name: Run AppStoreAPIModule Unit Tests
         run: |
           bundle exec fastlane unit_test
-
-      - name: Upload Test Results (xcresult)
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: fastlane/test_output/**/*.xcresult
-
-      - name: Upload JUnit Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: junit-report
-          path: fastlane/test_output/report.junit
           
       - name: Extract code coverage percentage
         id: coverage
         run: |
-          brew install jq
-          RESULT_PATH=$(find fastlane/test_output -type d -name "*.xcresult" | head -n 1)
-          echo "📍 RESULT_PATH: $RESULT_PATH"
+          brew install llvm jq
+          mkdir -p output
+          xcrun llvm-cov export -format="json" \
+            .build/debug/CoreModulePackageTests.xctest \
+            -instr-profile .build/debug/codecov/default.profdata > output/coverage.json
 
-          if [ -d "$RESULT_PATH" ]; then
-            xcrun xccov view --report --json "$RESULT_PATH" > coverage.json
-            COVERAGE=$(jq '[.[].lineCoverage] | add / length * 100' coverage.json)
-            echo "Code Coverage: $COVERAGE%"
-            echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
-          else
-            echo "$RESULT_PATH not found! Test might have failed."
-            exit 1
-          fi
+          COVERAGE=$(jq '[.data[].files[].summary.line_coverage] | add / length * 100' output/coverage.json)
+          echo "Code Coverage: $COVERAGE%"
+          echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
 
       - name: Run Danger (non-blocking)
         continue-on-error: true

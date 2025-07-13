@@ -2,7 +2,7 @@
 
 //
 //  Package.swift
-//  CoreNetwork
+//  AppStoreAPIModule
 //
 //  Created by jch on 6/26/25.
 //
@@ -25,17 +25,15 @@ let package = Package(
         .target(
             name: "AppStoreAPIModule",
             dependencies: [
-                "CoreModule"
+                .product(name: "CoreDatabase", package: "CoreModule"),
+                .product(name: "CoreNetwork", package: "CoreModule")
             ],
-            path: "Sources/AppStoreAPIModule",
-            exclude: [],
-            resources: [],
-            publicHeadersPath: nil
+            path: "Sources/AppStoreAPIModule"
         ),
-//        .testTarget(
-//            name: "AppStoreAPIModuleTests",
-//            dependencies: ["AppStoreAPIModule"],
-//            path: "Tests/AppStoreAPIModuleTests"
-//        )
+        .testTarget(
+            name: "AppStoreAPIModuleTests",
+            dependencies: ["AppStoreAPIModule"],
+            path: "Tests/AppStoreAPIModuleTests"
+        )
     ]
 )
