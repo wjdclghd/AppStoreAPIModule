@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import CoreModule
+import CoreNetwork
 
 public class SearchDetailListRepository: SearchDetailListRepositoryProtocol {
     private let networkServiceProtocol: NetworkServiceProtocol

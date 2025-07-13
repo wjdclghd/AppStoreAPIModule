@@ -16,6 +16,14 @@ public final class SearchDetailListUseCase: SearchDetailListUseCaseProtocol {
     }
 
     public func searchDetailListUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchDetailEntity], Error> {
-        repository.searchDetailListRepositoryProtocol(searchKeyword: searchKeyword)
+        let trimmedSearchKeyword = searchKeyword.trimmingCharacters(in: .whitespaces)
+        
+        guard !trimmedSearchKeyword.isEmpty else {
+            return Just([])
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
+        return repository.searchDetailListRepositoryProtocol(searchKeyword: searchKeyword)
     }
 }

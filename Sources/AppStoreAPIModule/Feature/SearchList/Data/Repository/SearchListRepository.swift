@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import CoreModule
+import CoreDatabase
 
 final class SearchListRepository: SearchListRepositoryProtocol {
     
