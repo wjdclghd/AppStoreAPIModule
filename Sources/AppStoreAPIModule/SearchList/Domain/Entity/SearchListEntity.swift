@@ -8,6 +8,10 @@
 import Foundation
 import CoreDatabase
 
-struct SearchListEntity: Codable, RealmSwiftDBSearchListEntityProtocol {
-    let searchKeyword: String
+public struct SearchListEntity: Codable, RealmSwiftDBSearchListEntityProtocol {
+    public let searchKeyword: String
+    
+    public init(searchKeyword: String) {
+        self.searchKeyword = searchKeyword
+    }
 }

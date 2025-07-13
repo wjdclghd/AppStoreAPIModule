@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-class SearchListUseCase: SearchListUseCaseProtocol {
+public final class SearchListUseCase: SearchListUseCaseProtocol {
     private let repository: SearchListRepositoryProtocol
     
-    init(repository: SearchListRepositoryProtocol) {
+    public init(repository: SearchListRepositoryProtocol) {
         self.repository = repository
     }
     
-    func insertUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
+    public func insertUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
         return repository.selectRepositoryProtocol(searchKeyword: searchKeyword)
             .flatMap { existingKeywords -> AnyPublisher<Void, Error> in
                 if existingKeywords.contains(where: { $0.searchKeyword == searchKeyword }) {
@@ -27,19 +27,19 @@ class SearchListUseCase: SearchListUseCaseProtocol {
             .eraseToAnyPublisher()
     }
     
-    func updateUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
+    public func updateUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
         return repository.updateRepositoryProtocol(searchKeyword: searchKeyword)
     }
     
-    func deleteUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
+    public func deleteUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
         return repository.deleteRepositoryProtocol(searchKeyword: searchKeyword)
     }
     
-    func deleteAllUseCaseProtocol() -> AnyPublisher<Void, Error> {
+    public func deleteAllUseCaseProtocol() -> AnyPublisher<Void, Error> {
         return repository.deleteAllRepositoryProtocol()
     }
     
-    func selectUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
+    public func selectUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
         let trimmedSearchKeyword = searchKeyword.trimmingCharacters(in: .whitespaces)
         
         guard !trimmedSearchKeyword.isEmpty else {
@@ -51,11 +51,11 @@ class SearchListUseCase: SearchListUseCaseProtocol {
         return repository.selectRepositoryProtocol(searchKeyword: searchKeyword)
     }
     
-    func selectAllUseCaseProtocol() -> AnyPublisher<[SearchListEntity], Error> {
+    public func selectAllUseCaseProtocol() -> AnyPublisher<[SearchListEntity], Error> {
         return repository.selectAllRepositoryProtocol()
     }
     
-    func selectSearchKeywordBind(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
+    public func selectSearchKeywordBind(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
         let trimmedSearchKeyword = searchKeyword.trimmingCharacters(in: .whitespaces)
         
         if trimmedSearchKeyword.isEmpty {
