@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol SearchListUseCaseProtocol {
+public protocol SearchListUseCaseProtocol {
     func insertUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error>
     func updateUseCaseProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error>
     func deleteUseCaseProtocol(searchKeyword: String) -> AnyPublisher<Void, Error>

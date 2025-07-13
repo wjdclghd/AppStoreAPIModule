@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class SearchListViewModel: ObservableObject {
+public final class SearchListViewModel: ObservableObject {
     @Published var searchKeyword: String = ""
     @Published var searchEntitys: [SearchListEntity] = []
     @Published var errorMessage: String?

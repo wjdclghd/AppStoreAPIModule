@@ -8,16 +8,16 @@
 import Foundation
 import SwiftUI
 
-struct SearchListView: View {
+public struct SearchListView: View {
     @StateObject private var viewModel: SearchListViewModel
     private let onPush: (String) -> Void
 
-    init(viewModel: @autoclosure @escaping () -> SearchListViewModel, onPush: @escaping (String) -> Void) {
+    public init(viewModel: @autoclosure @escaping () -> SearchListViewModel, onPush: @escaping (String) -> Void) {
         _viewModel = StateObject(wrappedValue: viewModel())
         self.onPush = onPush
     }
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: 0) {
             TextField("검색어를 입력하세요", text: $viewModel.searchKeyword)
                 .textFieldStyle(.roundedBorder)

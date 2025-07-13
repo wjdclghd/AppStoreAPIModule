@@ -9,15 +9,15 @@ import Foundation
 import Combine
 import CoreDatabase
 
-final class SearchListRepository: SearchListRepositoryProtocol {
+public final class SearchListRepository: SearchListRepositoryProtocol {
     
     private let realmSwiftDBSearchListProtocol: RealmSwiftDBSearchListProtocol
 
-    init(realmSwiftDBSearchListProtocol: RealmSwiftDBSearchListProtocol) {
+    public init(realmSwiftDBSearchListProtocol: RealmSwiftDBSearchListProtocol) {
         self.realmSwiftDBSearchListProtocol = realmSwiftDBSearchListProtocol
     }
 
-    func insertRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
+    public func insertRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
         guard !searchKeyword.trimmingCharacters(in: .whitespaces).isEmpty else {
             return Fail(error: SearchListRepositoryError.invalidQuery).eraseToAnyPublisher()
         }
@@ -29,7 +29,7 @@ final class SearchListRepository: SearchListRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    func updateRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
+    public func updateRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
         guard !searchKeyword.trimmingCharacters(in: .whitespaces).isEmpty else {
             return Fail(error: SearchListRepositoryError.invalidQuery).eraseToAnyPublisher()
         }
@@ -41,7 +41,7 @@ final class SearchListRepository: SearchListRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    func deleteRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
+    public func deleteRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error> {
         guard !searchKeyword.trimmingCharacters(in: .whitespaces).isEmpty else {
             return Fail(error: SearchListRepositoryError.invalidQuery).eraseToAnyPublisher()
         }
@@ -51,13 +51,13 @@ final class SearchListRepository: SearchListRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    func deleteAllRepositoryProtocol() -> AnyPublisher<Void, Error> {
+    public func deleteAllRepositoryProtocol() -> AnyPublisher<Void, Error> {
         return realmSwiftDBSearchListProtocol.deleteAllDatabase()
             .mapError{SearchListRepositoryError.databaseError($0)}
             .eraseToAnyPublisher()
     }
 
-    func selectRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
+    public func selectRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error> {
         guard !searchKeyword.trimmingCharacters(in: .whitespaces).isEmpty else {
             return Fail(error: SearchListRepositoryError.invalidQuery).eraseToAnyPublisher()
         }
@@ -67,7 +67,7 @@ final class SearchListRepository: SearchListRepositoryProtocol {
             .eraseToAnyPublisher()
     }
 
-    func selectAllRepositoryProtocol() -> AnyPublisher<[SearchListEntity], Error> {
+    public func selectAllRepositoryProtocol() -> AnyPublisher<[SearchListEntity], Error> {
         return realmSwiftDBSearchListProtocol.selectAllDatabase()
             .mapError{SearchListRepositoryError.databaseError($0)}
             .eraseToAnyPublisher()

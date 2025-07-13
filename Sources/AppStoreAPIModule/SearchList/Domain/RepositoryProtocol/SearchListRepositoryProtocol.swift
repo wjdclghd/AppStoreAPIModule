@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol SearchListRepositoryProtocol {
+public protocol SearchListRepositoryProtocol {
     func insertRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error>
     func updateRepositoryProtocol(searchKeyword: String) -> AnyPublisher<[SearchListEntity], Error>
     func deleteRepositoryProtocol(searchKeyword: String) -> AnyPublisher<Void, Error>
