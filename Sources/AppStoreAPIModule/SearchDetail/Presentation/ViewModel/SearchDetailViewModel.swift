@@ -7,10 +7,10 @@
 
 import Foundation
 
-final class SearchDetailViewModel: ObservableObject {
+public final class SearchDetailViewModel: ObservableObject {
     @Published var searchDetailEntity: SearchDetailEntity?
 
-    init(entity: SearchDetailEntity) {
+    public init(entity: SearchDetailEntity) {
         self.searchDetailEntity = entity
     }
 }
