@@ -16,13 +16,13 @@ public final class SearchDetailListViewModel: ObservableObject {
     private let useCase: SearchDetailListUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(useCase: SearchDetailListUseCaseProtocol, searchKeyword: String) {
+    public init(useCase: SearchDetailListUseCaseProtocol, searchKeyword: String) {
         self.useCase = useCase
         
         searchDetailList(searchKeyword: searchKeyword)
     }
 
-    func searchDetailList(searchKeyword: String) {
+    public func searchDetailList(searchKeyword: String) {
         isLoading = true
         errorMessage = nil
         
