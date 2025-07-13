@@ -17,14 +17,14 @@ public final class SearchListViewModel: ObservableObject {
     private let useCase: SearchListUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
 
-    init(useCase: SearchListUseCaseProtocol) {
+    public init(useCase: SearchListUseCaseProtocol) {
         self.useCase = useCase
         
         self.searchKeywordAllList()
         searchKeywordBind()
     }
     
-    func searchKeywordBind() {
+    public func searchKeywordBind() {
         $searchKeyword
             .dropFirst()
             .debounce(for: .milliseconds(300), scheduler: DispatchQueue.main)
@@ -54,7 +54,7 @@ public final class SearchListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func searchKeywordList(searchKeyword: String) {
+    public func searchKeywordList(searchKeyword: String) {
         isLoading = true
         errorMessage = nil
 
@@ -76,7 +76,7 @@ public final class SearchListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func searchKeywordAllList() {
+    public func searchKeywordAllList() {
         isLoading = true
         errorMessage = nil
 
@@ -98,7 +98,7 @@ public final class SearchListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func searchKeywordSave(searchKeyword: String) {
+    public func searchKeywordSave(searchKeyword: String) {
         isLoading = true
         errorMessage = nil
         
