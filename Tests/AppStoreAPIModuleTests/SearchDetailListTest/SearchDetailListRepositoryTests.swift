@@ -12,20 +12,23 @@ import Combine
 @testable import CoreNetwork
 
 final class SearchDetailListRepositoryTests: XCTestCase {
-    private var testCancellables: Set<AnyCancellable>!
     private var testNetworkService: TestNetworkService!
     private var testSearchDetailListRepository: SearchDetailListRepository!
+    
+    private var testCancellables: Set<AnyCancellable>!
 
     override func setUpWithError() throws {
-        testCancellables = []
         testNetworkService = TestNetworkService()
         testSearchDetailListRepository = SearchDetailListRepository(networkServiceProtocol: testNetworkService)
+        
+        testCancellables = []
     }
     
     override func tearDownWithError() throws {
-        testCancellables = nil
         testNetworkService = nil
         testSearchDetailListRepository = nil
+        
+        testCancellables = nil
     }
 
     func testSearchDetailListRepositoryProtocol() {
