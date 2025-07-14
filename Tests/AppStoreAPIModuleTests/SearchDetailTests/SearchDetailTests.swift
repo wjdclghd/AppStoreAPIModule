@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 import Combine
 import SwiftUI
-@testable import iOSCleanArchitecture
+@testable import AppStoreAPIModule
 
 final class SearchDetailViewModelTests: XCTestCase {
     private var testSearchDetailViewModel: SearchDetailViewModel!
