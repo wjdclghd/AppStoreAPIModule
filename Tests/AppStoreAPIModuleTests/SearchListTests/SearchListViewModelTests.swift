@@ -233,7 +233,7 @@ final class TestSearchListUseCase: SearchListUseCaseProtocol {
         .eraseToAnyPublisher()
     }
     
-    func selectSearchKeywordBind(searchKeyword: String) -> AnyPublisher<[iOSCleanArchitecture.SearchListEntity], any Error> {
+    func selectSearchKeywordBind(searchKeyword: String) -> AnyPublisher<[SearchListEntity], any Error> {
         if testFailBind {
             return Fail(error: NSError(domain: "Test", code: -1, userInfo: [NSLocalizedDescriptionKey: "Bind Error"]))
                 .eraseToAnyPublisher()
