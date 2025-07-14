@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 import Combine
-@testable import iOSCleanArchitecture
+@testable import AppStoreAPIModule
 @testable import CoreDatabase
 
 final class SearchListRepositoryTests: XCTestCase {
