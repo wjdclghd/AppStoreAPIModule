@@ -72,7 +72,7 @@ final class TestSearchListDatabase: RealmSwiftDBSearchListProtocol {
     var insertCalled = false
     var shouldFail = false
     
-    func insertDatabase<T: SearchListEntityProtocol>(searchListEntity: T) -> AnyPublisher<Void, Error> {
+    func insertDatabase<T: RealmSwiftDBSearchListEntityProtocol>(searchListEntity: T) -> AnyPublisher<Void, Error> {
         insertCalled = true
         
         if let testEntity = searchListEntity as? SearchListEntity {
@@ -115,7 +115,7 @@ final class TestSearchListDatabase: RealmSwiftDBSearchListProtocol {
             .eraseToAnyPublisher()
     }
 
-    func selectDatabase<T: SearchListEntityProtocol>(searchKeyword: String) -> AnyPublisher<[T], Error> {
+    func selectDatabase<T: RealmSwiftDBSearchListEntityProtocol>(searchKeyword: String) -> AnyPublisher<[T], Error> {
         guard let testSearchKeyword = SearchListEntity(searchKeyword: searchKeyword) as? T else {
             return Fail(error: NSError(domain: "CastingError", code: -2))
                 .eraseToAnyPublisher()
@@ -128,7 +128,7 @@ final class TestSearchListDatabase: RealmSwiftDBSearchListProtocol {
             .eraseToAnyPublisher()
     }
 
-    func selectAllDatabase<T: SearchListEntityProtocol>() -> AnyPublisher<[T], Error> {
+    func selectAllDatabase<T: RealmSwiftDBSearchListEntityProtocol>() -> AnyPublisher<[T], Error> {
         let testEntitys = [
             SearchListEntity(searchKeyword: "selectAll1"),
             SearchListEntity(searchKeyword: "selectAll2")
