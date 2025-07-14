@@ -19,7 +19,7 @@ final class SearchListRepositoryTests: XCTestCase {
     override func setUp() {
         testCancellables = []
         let testSearchListDatabase = TestSearchListDatabase()
-        testSearchListRepository = SearchListRepository(searchListDatabaseProtocol: testSearchListDatabase)
+        testSearchListRepository = SearchListRepository(RealmSwiftDBSearchListProtocol: testSearchListDatabase)
     }
 
     override func tearDown() {
@@ -66,7 +66,7 @@ final class SearchListRepositoryTests: XCTestCase {
     }
 }
 
-final class TestSearchListDatabase: SearchListDatabaseProtocol {
+final class TestSearchListDatabase: RealmSwiftDBSearchListProtocol {
     var lastInsertedEntity: SearchListEntity?
     var lastDeletedKeyword: String?
     var insertCalled = false
@@ -87,7 +87,7 @@ final class TestSearchListDatabase: SearchListDatabaseProtocol {
             .eraseToAnyPublisher()
     }
     
-    func updateDatabase<T: SearchListEntityProtocol>(searchListEntity: T) -> AnyPublisher<[T], Error> {
+    func updateDatabase<T: RealmSwiftDBSearchListProtocol>(searchListEntity: T) -> AnyPublisher<[T], Error> {
         return shouldFail
             ? Fail(error: NSError(domain: "", code: -1))
             .eraseToAnyPublisher()
