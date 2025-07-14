@@ -2,7 +2,7 @@ default_platform(:ios)
 
 def clean_fastlane
   sh "rm -rf fastlane/test_output/*.xcresult"
-  sh "rm -rf ~/Library/Developer/Xcode/DerivedData"
+  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
   sh "rm -rf fastlane/test_output"
   sh "rm -rf fastlane/logs"
 end
@@ -13,22 +13,20 @@ platform :ios do
   lane :unit_test do
     clean_fastlane
 
-    sh "swift test --enable-code-coverage"
-
-    #scan(
-    #  workspace: "AppStoreAPIModule.xcworkspace",
-    #  scheme: "AppStoreAPIModule",
-    #  clean: true,
-    #  code_coverage: true,
-    #  output_directory: "fastlane/test_output",
-    #  output_types: "junit",
-    #  output_files: "report.junit",
-    #  result_bundle: true,
-    #  buildlog_path: "fastlane/logs",
-    #  fail_build: true,
-    #  skip_package_dependencies_resolution: true,
-    #  xcargs: "CODE_SIGNING_ALLOWED=NO"
-    #)
+    scan(
+      workspace: "AppStoreAPIModule.xcworkspace",
+      scheme: "AppStoreAPIModule",
+      clean: true,
+      code_coverage: true,
+      output_directory: "fastlane/test_output",
+      output_types: "junit",
+      output_files: "report.junit",
+      result_bundle: true,
+      buildlog_path: "fastlane/logs",
+      fail_build: true,
+      skip_package_dependencies_resolution: false,
+      xcargs: "CODE_SIGNING_ALLOWED=NO"
+    )
   end
 
 

@@ -13,7 +13,7 @@ let package = Package(
     name: "AppStoreAPIModule",
     platforms: [
         .iOS(.v16),
-        .macOS(.v10_15)
+        .macOS(.v14)
     ],
     products: [
         .library(name: "AppStoreAPIModule", targets: ["AppStoreAPIModule"])

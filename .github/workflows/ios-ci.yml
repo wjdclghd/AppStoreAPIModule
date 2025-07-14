@@ -48,15 +48,15 @@ jobs:
       - name: Extract code coverage percentage
         id: coverage
         run: |
-          brew install llvm jq
           mkdir -p output
-          xcrun llvm-cov export -format="json" \
-            .build/debug/CoreModulePackageTests.xctest \
-            -instr-profile .build/debug/codecov/default.profdata > output/coverage.json
-
-          COVERAGE=$(jq '[.data[].files[].summary.line_coverage] | add / length * 100' output/coverage.json)
-          echo "Code Coverage: $COVERAGE%"
-          echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
+          xcresult_path=$(find fastlane/test_output -name "*.xcresult" | head -n 1)
+          if [[ -f "$xcresult_path" ]]; then
+            coverage=$(xcrun xccov view --report --json "$xcresult_path" | jq  '[.targets[].lineCoverage] | add / length * 100')
+            echo "Code Coverage: $coverage%"
+            echo "coverage=$coverage" >> $GITHUB_OUTPUT
+          else
+            echo "No .xcresult file found"
+          fi
 
       - name: Run Danger (non-blocking)
         continue-on-error: true

@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "C97E23FB-FB7F-4E37-A27F-268D0628A1F4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:AppStoreAPIModule.xcodeproj",
+        "identifier" : "7914D71B2E24C06600FFD1BD",
+        "name" : "AppStoreAPIModuleTests"
+      }
+    }
+  ],
+  "version" : 1
+}
