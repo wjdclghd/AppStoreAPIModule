@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		357CEEBFDB13154CB1A2B913 /* Pods_AppStoreAPIModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEC00870A69372E240D5D26 /* Pods_AppStoreAPIModule.framework */; };
 		7914D71D2E24C06600FFD1BD /* AppStoreAPIModule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7914D7112E24C06500FFD1BD /* AppStoreAPIModule.framework */; };
-		79513C222E24F70D005DCB2E /* CoreDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 79711F042E24EE7F003C334F /* CoreDatabase */; };
-		79513C232E24F70D005DCB2E /* CoreNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 79711F062E24EE7F003C334F /* CoreNetwork */; };
+		79347DDA2E25295600D03D01 /* CoreDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 79347DD92E25295600D03D01 /* CoreDatabase */; };
+		79347DDC2E25295600D03D01 /* CoreNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 79347DDB2E25295600D03D01 /* CoreNetwork */; };
 		C0BCF8779000678CF262517C /* Pods_AppStoreAPIModuleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E165C499DA467C8DAAE056CC /* Pods_AppStoreAPIModuleTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79513C232E24F70D005DCB2E /* CoreNetwork in Frameworks */,
-				79513C222E24F70D005DCB2E /* CoreDatabase in Frameworks */,
+				79347DDA2E25295600D03D01 /* CoreDatabase in Frameworks */,
+				79347DDC2E25295600D03D01 /* CoreNetwork in Frameworks */,
 				357CEEBFDB13154CB1A2B913 /* Pods_AppStoreAPIModule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,8 +145,8 @@
 			);
 			name = AppStoreAPIModule;
 			packageProductDependencies = (
-				79711F042E24EE7F003C334F /* CoreDatabase */,
-				79711F062E24EE7F003C334F /* CoreNetwork */,
+				79347DD92E25295600D03D01 /* CoreDatabase */,
+				79347DDB2E25295600D03D01 /* CoreNetwork */,
 			);
 			productName = AppStoreAPIModule;
 			productReference = 7914D7112E24C06500FFD1BD /* AppStoreAPIModule.framework */;
@@ -202,7 +202,7 @@
 			mainGroup = 7914D7072E24C06500FFD1BD;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				79711EB22E24EA4E003C334F /* XCLocalSwiftPackageReference "../CoreModule" */,
+				79347DD82E2526AF00D03D01 /* XCLocalSwiftPackageReference "../CoreModule" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7914D7122E24C06500FFD1BD /* Products */;
@@ -563,21 +563,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		79711EB22E24EA4E003C334F /* XCLocalSwiftPackageReference "../CoreModule" */ = {
+		79347DD82E2526AF00D03D01 /* XCLocalSwiftPackageReference "../CoreModule" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../CoreModule;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		79711F042E24EE7F003C334F /* CoreDatabase */ = {
+		79347DD92E25295600D03D01 /* CoreDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79711EB22E24EA4E003C334F /* XCLocalSwiftPackageReference "../CoreModule" */;
+			package = 79347DD82E2526AF00D03D01 /* XCLocalSwiftPackageReference "../CoreModule" */;
 			productName = CoreDatabase;
 		};
-		79711F062E24EE7F003C334F /* CoreNetwork */ = {
+		79347DDB2E25295600D03D01 /* CoreNetwork */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 79711EB22E24EA4E003C334F /* XCLocalSwiftPackageReference "../CoreModule" */;
+			package = 79347DD82E2526AF00D03D01 /* XCLocalSwiftPackageReference "../CoreModule" */;
 			productName = CoreNetwork;
 		};
 /* End XCSwiftPackageProductDependency section */
