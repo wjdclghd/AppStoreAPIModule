@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 import Combine
-@testable import iOSCleanArchitecture
+@testable import AppStoreAPIModule
 
 final class SearchListUseCaseTests: XCTestCase {
     private var testCancellables: Set<AnyCancellable>!
