@@ -33,7 +33,7 @@ final class SearchDetailListViewModelTests: XCTestCase {
     func testSearchDetailList() {
         let testExpectation = expectation(description: "TestSearchDetailList")
 
-        testSearchDetailListViewModel.$searchDetailEntitys
+        testSearchDetailListViewModel.searchDetailResults
             .dropFirst()
             .sink { testResults in
                 XCTAssertEqual(testResults.count, 1)
@@ -61,7 +61,7 @@ final class TestSearchDetailListUseCase: SearchDetailListUseCaseProtocol {
             genres: ["Utilities"]
         )
         
-        return Just(testResults)
+        return Just([testResults])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
