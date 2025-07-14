@@ -12,20 +12,23 @@ import Combine
 @testable import CoreDatabase
 
 final class SearchListRepositoryTests: XCTestCase {
-    private var testCancellables: Set<AnyCancellable>!
     private var testSearchListDatabase: TestSearchListDatabase!
     private var testSearchListRepository: SearchListRepository!
+    
+    private var testCancellables: Set<AnyCancellable>!
 
     override func setUp() {
+        testSearchListDatabase = TestSearchListDatabase()
+        testSearchListRepository = SearchListRepository(realmSwiftDBSearchListProtocol: testSearchListDatabase)
+        
         testCancellables = []
-        let testSearchListDatabase = TestSearchListDatabase()
-        testSearchListRepository = SearchListRepository(RealmSwiftDBSearchListProtocol: testSearchListDatabase)
     }
 
     override func tearDown() {
-        testCancellables = nil
         testSearchListDatabase = nil
         testSearchListRepository = nil
+        
+        testCancellables = nil
     }
 
     func testSelectDatabase() {
@@ -87,7 +90,7 @@ final class TestSearchListDatabase: RealmSwiftDBSearchListProtocol {
             .eraseToAnyPublisher()
     }
     
-    func updateDatabase<T: RealmSwiftDBSearchListProtocol>(searchListEntity: T) -> AnyPublisher<[T], Error> {
+    func updateDatabase<T: RealmSwiftDBSearchListEntityProtocol>(searchListEntity: T) -> AnyPublisher<[T], Error> {
         return shouldFail
             ? Fail(error: NSError(domain: "", code: -1))
             .eraseToAnyPublisher()
