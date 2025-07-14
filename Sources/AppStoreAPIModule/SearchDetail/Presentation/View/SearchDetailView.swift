@@ -71,7 +71,7 @@ public struct SearchDetailView: View {
                             .font(.body)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color(.systemGray5))
+                            .background(Color.gray.opacity(0.2))
                             .cornerRadius(10)
                     }
                     .padding(.top, 16)
