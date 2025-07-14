@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 public final class SearchDetailViewModel: ObservableObject {
     @Published var searchDetailEntity: SearchDetailEntity?
