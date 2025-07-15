@@ -12,7 +12,7 @@ platform :ios do
   desc "unit test"
   lane :unit_test do
     clean_fastlane
-
+ 
     scan(
       workspace: "AppStoreAPIModule.xcworkspace",
       scheme: "AppStoreAPIModule",
