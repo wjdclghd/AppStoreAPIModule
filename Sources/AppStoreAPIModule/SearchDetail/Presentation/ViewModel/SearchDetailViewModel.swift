@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 public final class SearchDetailViewModel: ObservableObject {
-    @Published var searchDetailEntity: SearchDetailEntity?
+    @Published private(set) var searchDetailEntity: SearchDetailEntity?
 
     public init(entity: SearchDetailEntity) {
         self.searchDetailEntity = entity
