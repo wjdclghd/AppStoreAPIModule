@@ -10,9 +10,9 @@ import Combine
 
 public final class SearchListViewModel: ObservableObject {
     @Published var searchKeyword: String = ""
-    @Published var searchEntitys: [SearchListEntity] = []
-    @Published var errorMessage: String?
-    @Published var isLoading: Bool = false
+    @Published private(set) var searchEntitys: [SearchListEntity] = []
+    @Published private(set) var errorMessage: String?
+    @Published private(set) var isLoading: Bool = false
 
     private let useCase: SearchListUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
