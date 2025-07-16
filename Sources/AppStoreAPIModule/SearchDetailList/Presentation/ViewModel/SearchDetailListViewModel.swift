@@ -11,7 +11,7 @@ import Combine
 public final class SearchDetailListViewModel: ObservableObject {
     @Published private(set) var searchDetailResults: [SearchDetailEntity] = []
     @Published private(set) var isLoading: Bool = false
-    @Published var errorMessage: String?
+    @Published private(set) var errorMessage: String?
 
     private let useCase: SearchDetailListUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
